@@ -241,13 +241,13 @@ class tgmg_level : public tgmg_base<tgmg_level<V,M>,V,M> {
         const int un;
         /** The mode to use for the Gauss-Seidel smoothing. (0=default) */
         const char gs_mode;
-        tgmg_level<V,M>(int m_,int n_,bool x_prd_,bool y_prd_,V* y_,int um_,int un_)
+        tgmg_level(int m_,int n_,bool x_prd_,bool y_prd_,V* y_,int um_,int un_)
             : tgmg_base<tgmg_level<V,M>,V,M>(*this,m_,n_,x_prd_,y_prd_,new V[m_*n_],new V[m_*n_]),
             s(new M[10*m_*n_]), y(y_), um(um_), un(un_), gs_mode(q.gs_mode) {}
         /** The class destructor clears the dynamically allocated
          * arrays for the solution, source terms, and matrix entries on
          * this level. */
-        ~tgmg_level<V,M>() {
+        ~tgmg_level() {
             delete [] s;
             delete [] z;
             delete [] b;
